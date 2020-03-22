@@ -10,6 +10,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Scanner;
 import zemberek.tokenization.Token;
 import zemberek.tokenization.TurkishTokenizer;
@@ -35,40 +36,40 @@ public class Main {
             Tweet tweet=new Tweet(metin);
             tweetList.add(tweet);
         }
-         
-          for(Tweet tweet:tweetList){
-       for(String kelime:textOkuma.stems){
-       
-           System.out.print(tweet.calculateTFIDF(textOkuma.cumleList,kelime)+",");
-           
-       }
-              System.out.println("");}
-    
-         
-       //writeDataAtOnce();
+         String sinif=null;
+         for(int i=0;i<textOkuma.cumleList.size();i++){
+              sinif = textOkuma.fileNameList.get(i);
+              tweetList.get(i).setSinif(sinif);
+         }
+       writeDataAtOnce();
       
         
     }
       public static void writeDataAtOnce() 
 { 
     try { 
-       PrintStream ps = new PrintStream(new File(System.getProperty("user.home"), "out.txt"));
+       PrintStream ps = new PrintStream(new File("src/main/java/out.txt"));
  
          String[] header = new String[textOkuma.stems.size()];
         for(Integer i=0;i<textOkuma.stems.size();i++){
         header[i]="a"+ i.toString();
-        if(i!=(textOkuma.stems.size()-1)){
             ps.print(header[i] +",");
         }
-        else ps.print(header[i]);
-        }
+        ps.print("Class");
+        ps.println("");
+        int i=0;
         for(Tweet tweet:tweetList){
+            i++;
+            ps.print("Kayıt"+i+" ");
        for(String kelime:textOkuma.stems){
        
            ps.print(tweet.calculateTFIDF(textOkuma.cumleList,kelime)+",");
            
        }
-        ps.println(" ");}
+       ps.print(tweet.getSinif());
+       ps.println(" ");
+       }
+        
         ps.close();
     } 
     catch (IOException e) { 

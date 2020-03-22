@@ -36,7 +36,15 @@ private double tfIdf;
     public String getMetin() {
         return metin;
     }
+private String sinif;
 
+    public String getSinif() {
+        return sinif;
+    }
+
+    public void setSinif(String sinif) {
+        this.sinif = sinif;
+    }
     public void setMetin(String metin) {
         this.metin = metin;
     }
