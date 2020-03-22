@@ -111,7 +111,7 @@ private String sinif;
         this.falsePositive = falsePositive;
     }
     static TextOkuma textOkuma=new TextOkuma();
-    public double calculateTF(String kelime){
+    public double calculateTF(String kelime){//TF hesabı
     double res=0;
         if(metin.contains(kelime)){
         res++;
@@ -122,7 +122,7 @@ private String sinif;
         return (res/st.countTokens());
     }
    
-    public double calculateIDF(List<String> cumleList,String kelime){
+    public double calculateIDF(List<String> cumleList,String kelime){//IDF hesabı
    double res=0;
     double total=0;
     for(String text:cumleList){
@@ -151,7 +151,7 @@ private String sinif;
         return calculateTFIDF(cumleList,kelime);
     }
     
-    public double calculateTFIDF(List<String> cumleList,String kelime){
+    public double calculateTFIDF(List<String> cumleList,String kelime){//TFIDF hesabı
         
     return(calculateIDF(cumleList,kelime)*calculateTF(kelime));}
 

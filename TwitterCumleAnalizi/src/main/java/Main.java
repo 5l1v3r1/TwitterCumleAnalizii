@@ -1,19 +1,9 @@
 
-import com.opencsv.CSVWriter;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
-import java.util.Scanner;
-import zemberek.tokenization.Token;
-import zemberek.tokenization.TurkishTokenizer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -35,13 +25,14 @@ public class Main {
          for(String metin:textOkuma.cumleList){
             Tweet tweet=new Tweet(metin);
             tweetList.add(tweet);
-        }
+        }//okunan herbir cümleyi Tweet classına atma
          String sinif=null;
          for(int i=0;i<textOkuma.cumleList.size();i++){
               sinif = textOkuma.fileNameList.get(i);
-              tweetList.get(i).setSinif(sinif);
+              tweetList.get(i).setSinif(sinif); //cümlenin hangi sınıflandırmaya ait olduğunu çekildiği ana klasörün adına göre yapılması
          }
-       writeDataAtOnce();
+       //writeDataAtOnce(); 
+       //tf-idf için istenen text dosyasını oluşturmak için fonksiyon, sadece bir kere çalıştırılmalı.
       
         
     }
@@ -77,7 +68,6 @@ public class Main {
         e.printStackTrace(); 
     } 
 } 
-     static TF_IDF tf_idf=new TF_IDF();
     static TextOkuma textOkuma=new TextOkuma();
    
  
